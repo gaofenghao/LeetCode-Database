@@ -10,15 +10,41 @@ ON Person.PersonId = Address.PersonId;
 -- 176	
 -- Second Highest Salary    		25.9%	Easy	
 
+SELECT IFNULL((SELECT DISTINCT Salary
+FROM Employee
+ORDER BY Salary DESC
+LIMIT 1, 1), NULL) AS SecondHighestSalary;
+
+-- or 
+
+SELECT (SELECT DISTINCT Salary
+FROM Employee
+ORDER BY Salary DESC
+LIMIT 1, 1) AS SecondHighestSalary;
 
 -- 181	
 -- Employees Earning More Than Their Managers    		44.6%	Easy	
+
+SELECT e1.Name AS Employee
+FROM Employee e1
+JOIN Employee e2 ON e1.ManagerId=e2.Id
+WHERE e1.Salary > e2.Salary;
+
 -- 182	
--- Duplicate Emails    		52.0%	Easy	
+-- Duplicate Emails    		52.0%	Easy
+
+
+	
 -- 183	
 -- Customers Who Never Order    		42.4%	Easy	
+
+
+
 -- 196	
 -- Delete Duplicate Emails    		30.3%	Easy	
+
+
+
 -- 197	
 -- Rising Temperature    		33.4%	Easy	
 -- 577	
