@@ -111,19 +111,52 @@ WHERE area > 3000000 OR population > 25000000;
 
 -- 596	
 -- Classes More Than 5 Students    		34.6%	Easy	
+
+SELECT class 
+FROM courses
+GROUP BY class 
+HAVING COUNT(DISTINCT student) >= 5;
+
 -- 597	
 -- Friend Requests I: Overall Acceptance Rate    		39.3%	Easy	
+SELECT (
+ROUND(
+IFNULL((SELECT COUNT(*)
+FROM friend_request
+GROUP BY sender_id, send_to_id) /
+(SELECT COUNT(*)
+FROM request_accepted
+GROUP BY request_id, accepter_id), 0) 2) AS accept_rate;
+
 -- 603	
 -- Consecutive Available Seats    		57.1%	Easy	
+
+SELECT seat_id
+FROM cinema c1
+JOIN cinema c2
+WHERE c1.free = 1 and c2.free = 1 and (c1.seat_id = c2.seat_id + 1 or c1.seat_id = c2.seat+id - 1);
+
 -- 607	
 -- Sales Person    		54.5%	Easy	
+
+
 -- 610	
--- Triangle Judgement    		60.8%	Easy	
+-- Triangle Judgement    		60.8%	Easy
+
+
+
 -- 613	
--- Shortest Distance in a Line    		72.1%	Easy	
+-- Shortest Distance in a Line    		72.1%	Easy
+
+
+
 -- 619	
 -- Biggest Single Number    		38.1%	Easy	
+
+
 -- 620	
 -- Not Boring Movies    		61.1%	Easy	
+
+
 -- 627	
 -- Swap Salary    		69.0%	Easy
