@@ -105,7 +105,9 @@ LIMIT 1;
 -- 595	
 -- Big Countries    		73.0%	Easy
 
-
+SELECT name, population, area
+FROM World
+WHERE area > 3000000 OR population > 25000000;
 
 -- 596	
 -- Classes More Than 5 Students    		34.6%	Easy	
