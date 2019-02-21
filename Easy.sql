@@ -56,11 +56,11 @@ FROM Customers
 LEFT JOIN Orders ON Customers.Id=Orders.CustomerId
 WHERE orders.Id IS NULL;
 
--- 196	
+-- 196	 **
 -- Delete Duplicate Emails    		30.3%	Easy	
 -- delete syntax
 
-DELETE FROM Person p1, Person p2
+DELETE p1 FROM Person p1, Person p2
 WHERE p1.Email = p2.Email AND p1.Id > p2.Id;
 
 -- 197	
@@ -81,14 +81,32 @@ WHERE w1.Temperature > w2.Temperature;
 -- 577	
 -- Employee Bonus    		56.8%	Easy	
 
-
+SELECT name, bonus
+FROM Employee e
+LEFT JOIN Bonus b ON e.empId=b.Bonus
+WHERE IFNULL(bonus, 0) < 2000;  
 
 -- 584	
 -- Find Customer Referee    		66.3%	Easy	
+
+SELECT name 
+FROM customer
+WHERE IFNULL(referee_id, 0) != 2
+
 -- 586	
 -- Customer Placing the Largest Number of Orders    		64.9%	Easy	
+
+SELECT customer_number
+FROM orders 
+GROUP BY customer_number 
+ORDER BY COUNT(order_number) DESC
+LIMIT 1;
+
 -- 595	
--- Big Countries    		73.0%	Easy	
+-- Big Countries    		73.0%	Easy
+
+
+
 -- 596	
 -- Classes More Than 5 Students    		34.6%	Easy	
 -- 597	
