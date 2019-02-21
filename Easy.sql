@@ -156,15 +156,28 @@ FROM triangle;
 -- 613	
 -- Shortest Distance in a Line    		72.1%	Easy
 
-
+SELECT MIN(ABS(p1.x - p2.x)) AS shortest
+FROM point p1
+JOIN point p2 ON p1.x != p2.x;
 
 -- 619	
 -- Biggest Single Number    		38.1%	Easy	
 
+SELECT MAX(num)
+FROM number
+GROUP BY num
+HAVING COUNT(DISTINCT num) = 1
 
 -- 620	
 -- Not Boring Movies    		61.1%	Easy	
 
+SELECT *
+FROM cinema
+WHERE id MOD 2 = 1 AND description != 'boring'
+ORDER BY rating DESC;
 
 -- 627	
 -- Swap Salary    		69.0%	Easy
+
+UPDATE salary
+SET sex = if(sex='f', 'm', 'f');
