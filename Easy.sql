@@ -131,19 +131,27 @@ GROUP BY request_id, accepter_id), 0) 2) AS accept_rate;
 -- 603	
 -- Consecutive Available Seats    		57.1%	Easy	
 
-SELECT seat_id
-FROM cinema c1
-JOIN cinema c2
-WHERE c1.free = 1 and c2.free = 1 and (c1.seat_id = c2.seat_id + 1 or c1.seat_id = c2.seat+id - 1);
+SELECT c1.seat_id
+FROM cinema c1, cinema c2
+WHERE c1.free = 1 and c2.free = 1 and (c1.seat_id = c2.seat_id + 1 or c1.seat_id = c2.seat+id - 1)
+ORDER BY c1.seat_id;
 
 -- 607	
 -- Sales Person    		54.5%	Easy	
 
+SELECT name
+FROM salesperson
+WHERE sales_id NOT IN (
+SELECT sales_id 
+FROM orders o
+LEFT JOIN company c ON o.com_id = c.com_id
+WHERE name = 'RED'); 
 
 -- 610	
 -- Triangle Judgement    		60.8%	Easy
 
-
+SELECT x, y, z, IF(x + y > z and x + z > y and z +y > x, 'YES', 'No') AS triangle
+FROM triangle;
 
 -- 613	
 -- Shortest Distance in a Line    		72.1%	Easy
